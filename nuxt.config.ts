@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/ui',
+    '@vueuse/nuxt',
   ],
 
   eslint: {
@@ -22,4 +23,9 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
+  imports: {
+    dirs: [
+      'utils/ast/*.ts',
+    ],
+  },
 })

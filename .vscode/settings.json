@@ -35,7 +35,10 @@
     "scss"
   ],
   "cSpell.words": [
-    "Nuxt"
+    "catppuccin",
+    "Jsonifiable",
+    "Nuxt",
+    "shiki"
   ],
   "files.associations": {
     "*.css": "tailwindcss"
