@@ -8,14 +8,14 @@ import catppuccinLatte from 'shiki/themes/catppuccin-latte.mjs'
 
 const props = withDefaults(defineProps<{
   language?: 'plaintext' | 'markdown'
-  value?: string
 }>(), {
   language: 'plaintext',
-  value: '',
 })
 const emit = defineEmits<{
   (e: 'change', value: string): void
 }>()
+
+const model = defineModel({ type: String })
 
 const highlighter = createHighlighterCoreSync({
   themes: [
@@ -32,14 +32,14 @@ monaco.languages.register({ id: 'markdown' })
 shikiToMonaco(highlighter, monaco)
 
 const editor = shallowRef<monaco.editor.IStandaloneCodeEditor>()
-const model = shallowRef<monaco.editor.ITextModel>()
-watch(() => [props.language, props.value], ([language, value]) => {
+const editorModel = shallowRef<monaco.editor.ITextModel>()
+watch(() => props.language, (language) => {
   if (!editor.value) {
     return
   }
 
-  model.value = monaco.editor.createModel(value, language)
-  editor.value?.setModel(model.value)
+  editorModel.value = monaco.editor.createModel(model.value ?? '', language)
+  editor.value?.setModel(editorModel.value)
 })
 
 const container = useTemplateRef('container')
@@ -52,10 +52,12 @@ watch(() => container.value, (container) => {
   editor.value = monaco.editor.create(container, {
     theme: catppuccinLatte.name,
     language: props.language,
-    value: props.value,
+    value: model.value,
   })
   editor.value.onDidChangeModelContent(() => {
-    emit('change', editor.value!.getValue())
+    const value = editor.value!.getValue()
+    model.value = value
+    emit('change', value)
   })
 })
 
@@ -65,7 +67,7 @@ useResizeObserver(document.body, () => {
 
 onBeforeUnmount(() => {
   editor.value?.dispose()
-  model.value?.dispose()
+  editorModel.value?.dispose()
 })
 
 defineExpose({

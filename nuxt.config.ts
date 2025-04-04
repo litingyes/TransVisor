@@ -27,5 +27,11 @@ export default defineNuxtConfig({
     dirs: [
       'utils/ast/*.ts',
     ],
+    presets: [
+      {
+        from: 'destr',
+        imports: ['destr'],
+      },
+    ],
   },
 })

@@ -1,30 +1,37 @@
 <script lang="ts" setup>
-const route = useRoute()
-const language = computed(() => route.params.language as string)
-const code = ref('')
+const { language, hashData, updateHash } = useUrlInfo()
 
-const { parse } = useAst(language)
+const code = ref(hashData.value.code)
+
+const { parse } = useAst()
 
 const tc = ref(0)
 const ast = ref()
 watch(code, (code) => {
-  parse(code).then(({ timeConsuming, ast: data }) => {
+  parse(code ?? '').then(({ timeConsuming, ast: data }) => {
     tc.value = timeConsuming
     ast.value = data
   })
 })
+
+function onCodeChange(value: string) {
+  updateHash({
+    code: value,
+  })
+}
 </script>
 
 <template>
   <div class="h-full">
-    <header class="h-10 flex items-center justify-between px-4 border-b border-solid border-gray-300">
-      <div class="flex items-center gap-2">
-        <div class="font-bold">
-          AST Explorer
-        </div>
-        <div>
-          {{ language }}
-        </div>
+    <header class="h-12 flex items-center justify-between px-4 border-b border-solid border-gray-300">
+      <div class="flex items-center gap-6">
+        <UChip :text="APP_VERSION" :ui="{ base: 'p-1 h-3' }">
+          <div class="font-bold">
+            AST Explorer
+          </div>
+        </UChip>
+        <AstLanguageTitle :language="language" />
+        <AstMdRemark />
       </div>
       <div class="flex items-center gap-1">
         <ToggleTheme />
@@ -37,9 +44,9 @@ watch(code, (code) => {
         />
       </div>
     </header>
-    <main class="h-[calc(100%-2.5rem)] grid grid-cols-2">
+    <main class="h-[calc(100%-3rem)] grid grid-cols-2">
       <div class="h-full">
-        <MonacoEditor @change="val => (code = val)" />
+        <MonacoEditor v-model="code" @change="onCodeChange" />
       </div>
       <div class="px-1 overflow-auto">
         <AstTree :data="ast" />

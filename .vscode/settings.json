@@ -35,10 +35,13 @@
     "scss"
   ],
   "cSpell.words": [
+    "atou",
     "catppuccin",
+    "fflate",
     "Jsonifiable",
     "Nuxt",
-    "shiki"
+    "shiki",
+    "utoa"
   ],
   "files.associations": {
     "*.css": "tailwindcss"
