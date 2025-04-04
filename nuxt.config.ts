@@ -21,6 +21,11 @@ export default defineNuxtConfig({
       standalone: false,
     },
   },
+  icon: {
+    serverBundle: {
+      collections: ['carbon', 'ic', 'ant-design', 'mdi', 'logos', 'vscode-icons'],
+    },
+  },
 
   css: ['~/assets/css/main.css'],
   imports: {
