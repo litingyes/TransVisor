@@ -11,7 +11,7 @@ export function useAst() {
       case 'markdown': {
         const start = performance.now()
         ast = await parseMarkdownToAst(code, hashData.value.parseBy, hashData.value) as unknown as Jsonifiable
-        timeConsuming = performance.now() - start
+        timeConsuming = Math.ceil((performance.now() - start) * 10) / 10
         break
       }
     }

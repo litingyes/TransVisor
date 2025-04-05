@@ -25,11 +25,16 @@ watch(config, (parseOption) => {
 <template>
   <div class="flex items-center gap-1">
     <UIcon :name="metadata.icon" />
-    Remark
+    <ULink :href="metadata.link" target="_blank">
+      Remark
+    </ULink>
     <UPopover arrow>
       <UButton class="cursor-pointer" icon="i-ant-design:setting-outlined" variant="ghost" />
       <template #content>
-        <div class="p-2">
+        <div class="p-2 flex flex-col gap-1">
+          <UBadge variant="soft">
+            v{{ metadata.version }}
+          </UBadge>
           <UCheckbox v-model="config.gfm" label="remark-gfm" />
           <UCheckbox v-model="config.mdx" label="remark-mdx" />
           <UCheckbox v-model="config.frontmatter" label="remark-frontmatter" />

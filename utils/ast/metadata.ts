@@ -4,6 +4,7 @@ interface Metadata {
   parsers: Record<string, {
     icon: string
     link: string
+    version: string
   }>
 }
 
@@ -15,6 +16,7 @@ export const AST_LANGUAGE_METADATA: Record<string, Metadata | undefined> = {
       remark: {
         icon: 'i-vscode-icons:file-type-light-remark',
         link: 'https://remark.js.org/',
+        version: REMARK_VERSION,
       },
     },
   },

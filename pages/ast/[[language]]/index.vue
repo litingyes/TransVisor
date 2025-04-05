@@ -36,6 +36,10 @@ function onCodeChange(value: string) {
         <AstMdRemark />
       </div>
       <div class="flex items-center gap-1">
+        <span v-if="tc">
+          <AnimateNumber :value="tc" />
+          ms
+        </span>
         <ToggleTheme />
         <UButton
           class="cursor-pointer" icon="i-mdi:github" variant="ghost" @click="navigateTo('https://github.com/litingyes/TransVisor.git', {
