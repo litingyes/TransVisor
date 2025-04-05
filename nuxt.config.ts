@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@vueuse/nuxt',
     'motion-v/nuxt',
+    '@vite-pwa/nuxt',
   ],
 
   eslint: {

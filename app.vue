@@ -9,5 +9,6 @@ import { Analytics } from '@vercel/analytics/nuxt'
       <NuxtPage />
     </UApp>
     <Analytics />
+    <NuxtPwaManifest />
   </div>
 </template>
