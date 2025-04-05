@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { TabsItem } from '@nuxt/ui'
+
 const { language, hashData, updateHash } = useUrlInfo()
 
 const { parse } = useAst()
@@ -20,6 +22,17 @@ function onCodeChange(value: string) {
     code: value,
   })
 }
+
+const tabItems: TabsItem[] = [
+  {
+    label: 'Tree',
+    icon: 'i-lucide:tree-deciduous',
+  },
+  {
+    label: 'JSON',
+    icon: 'i-lucide:file-json',
+  },
+]
 
 const { copy, copied } = useClipboard({
   source: location?.href,
@@ -61,8 +74,15 @@ function shareLink() {
       <div class="h-full">
         <MonacoEditor :model-value="hashData.code" @change="onCodeChange" />
       </div>
-      <div class="px-4 py-2 overflow-auto">
-        <AstTree :value="ast" />
+      <div class="px-4 py-2 overflow-auto h-full">
+        <UTabs :items="tabItems" :ui="{ root: 'h-full', content: 'h-[calc(100%-3rem)] overflow-auto' }">
+          <template #content="{ item }">
+            <div>
+              <AstTree v-if="item.label === 'Tree'" :value="ast" />
+              <JsonViewer v-else :data="ast" show-length show-line-number show-icon />
+            </div>
+          </template>
+        </UTabs>
       </div>
     </main>
   </div>

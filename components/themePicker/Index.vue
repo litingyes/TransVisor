@@ -90,6 +90,7 @@ async function toggleAppearance({ clientX: x, clientY: y }: MouseEvent, value: s
   <UPopover :ui="{ content: 'w-72 px-6 py-4 flex flex-col gap-4' }">
     <template #default="{ open }">
       <UButton
+        class="cursor-pointer"
         icon="i-lucide-swatch-book"
         color="neutral"
         :variant="open ? 'soft' : 'ghost'"
