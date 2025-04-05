@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/ui',
     '@vueuse/nuxt',
+    'motion-v/nuxt',
   ],
 
   eslint: {

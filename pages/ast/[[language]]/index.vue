@@ -12,6 +12,8 @@ watch(code, (code) => {
     tc.value = timeConsuming
     ast.value = data
   })
+}, {
+  immediate: true,
 })
 
 function onCodeChange(value: string) {
@@ -48,8 +50,8 @@ function onCodeChange(value: string) {
       <div class="h-full">
         <MonacoEditor v-model="code" @change="onCodeChange" />
       </div>
-      <div class="px-1 overflow-auto">
-        <AstTree :data="ast" />
+      <div class="px-4 py-2 overflow-auto">
+        <AstTree :value="ast" />
       </div>
     </main>
   </div>
