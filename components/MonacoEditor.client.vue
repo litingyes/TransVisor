@@ -5,6 +5,7 @@ import { createHighlighterCoreSync } from 'shiki/core'
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
 import markdown from 'shiki/langs/markdown.mjs'
 import catppuccinLatte from 'shiki/themes/catppuccin-latte.mjs'
+import catppuccinMocha from 'shiki/themes/catppuccin-mocha.mjs'
 
 const props = withDefaults(defineProps<{
   language?: 'plaintext' | 'markdown'
@@ -20,6 +21,7 @@ const model = defineModel({ type: String })
 const highlighter = createHighlighterCoreSync({
   themes: [
     catppuccinLatte,
+    catppuccinMocha,
   ],
   langs: [
     markdown,
@@ -40,6 +42,15 @@ watch(() => props.language, (language) => {
 
   editorModel.value = monaco.editor.createModel(model.value ?? '', language)
   editor.value?.setModel(editorModel.value)
+})
+
+const colorMode = useColorMode()
+watch(() => colorMode.value, (color) => {
+  if (!editor.value) {
+    return
+  }
+
+  monaco.editor.setTheme(color === 'dark' ? catppuccinMocha.name! : catppuccinLatte.name!)
 })
 
 const container = useTemplateRef('container')
