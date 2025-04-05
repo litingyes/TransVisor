@@ -20,6 +20,13 @@ function onCodeChange(value: string) {
     code: value,
   })
 }
+
+const { copy, copied } = useClipboard({
+  source: location?.href,
+})
+function shareLink() {
+  copy(location.href)
+}
 </script>
 
 <template>
@@ -40,6 +47,7 @@ function onCodeChange(value: string) {
           ms
         </span>
         <ThemePicker />
+        <UButton class="cursor-pointer" :icon="copied ? 'i-lucide:check' : 'i-lucide:share-2'" variant="ghost" @click="shareLink" />
         <UButton
           class="cursor-pointer" icon="i-mdi:github" variant="ghost" @click="navigateTo('https://github.com/litingyes/TransVisor.git', {
             open: {
