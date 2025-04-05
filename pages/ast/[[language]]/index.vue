@@ -52,11 +52,19 @@ function shareLink() {
   <div class="h-full">
     <header class="h-12 flex items-center justify-between px-4 border-b border-solid border-neutral-300 dark:border-neutral-700">
       <div class="flex items-center gap-6">
-        <UChip :text="APP_VERSION" :ui="{ base: 'p-1 h-3' }">
-          <div class="font-bold">
+        <div class="flex items-center gap-2">
+          <UChip :text="APP_VERSION" :ui="{ base: 'p-1 h-3' }">
+            <ULink to="/">
+              <div class="font-bold text-xl text-[var(--ui-text)]">
+                TransVisor
+              </div>
+            </ULink>
+          </UChip>
+          <div>👉</div>
+          <div class="font-semibold">
             AST Explorer
           </div>
-        </UChip>
+        </div>
         <AstLanguageTitle :language="language" />
         <AstMdRemark />
       </div>
