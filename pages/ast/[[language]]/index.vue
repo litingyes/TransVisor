@@ -8,6 +8,12 @@ const { parse } = useAst()
 const tc = ref(0)
 const ast = ref()
 watch(hashData, (data) => {
+  if (!data.code) {
+    tc.value = 0
+    ast.value = undefined
+    return
+  }
+
   parse(data.code ?? '').then(({ timeConsuming, ast: data }) => {
     tc.value = timeConsuming
     ast.value = data

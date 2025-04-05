@@ -38,7 +38,7 @@ const foldChildrenText = computed(() => {
 </script>
 
 <template>
-  <div class="pl-2 relative">
+  <div v-if="value" class="pl-2 relative">
     <div v-if="!isObjectValue" class="flex items-center gap-2">
       <span class="text-amber-700 dark:text-amber-300">{{ field }}:</span>
       <span :class="primitiveValueColor">{{ isString(value) ? `"${value}"` : value }}</span>
