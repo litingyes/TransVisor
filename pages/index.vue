@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-
+useHeadSafe({
+  title: 'TransVisor',
+})
 </script>
 
 <template>

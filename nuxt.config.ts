@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'motion-v/nuxt',
     '@vite-pwa/nuxt',
+    '@nuxtjs/seo',
   ],
 
   eslint: {
@@ -27,6 +28,11 @@ export default defineNuxtConfig({
     serverBundle: {
       collections: ['carbon', 'ic', 'ant-design', 'mdi', 'logos', 'vscode-icons', 'lucide'],
     },
+  },
+  site: {
+    name: 'TransVisor',
+    url: 'https://trans-visor.vercel.app/',
+    indexable: true,
   },
 
   css: ['~/assets/css/main.css'],

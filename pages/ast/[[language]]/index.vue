@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import type { TabsItem } from '@nuxt/ui'
 
+useHeadSafe({
+  title: 'AST Explorer',
+})
+
 const { language, hashData, updateHash } = useUrlInfo()
 
 const { parse } = useAst()
