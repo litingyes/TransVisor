@@ -40,7 +40,7 @@ function onCodeChange(value: string) {
           <AnimateNumber :value="tc" />
           ms
         </span>
-        <ToggleTheme />
+        <ThemePicker />
         <UButton
           class="cursor-pointer" icon="i-mdi:github" variant="ghost" @click="navigateTo('https://github.com/litingyes/TransVisor.git', {
             open: {

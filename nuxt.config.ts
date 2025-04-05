@@ -24,7 +24,7 @@ export default defineNuxtConfig({
   },
   icon: {
     serverBundle: {
-      collections: ['carbon', 'ic', 'ant-design', 'mdi', 'logos', 'vscode-icons'],
+      collections: ['carbon', 'ic', 'ant-design', 'mdi', 'logos', 'vscode-icons', 'lucide'],
     },
   },
 
