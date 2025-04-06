@@ -74,19 +74,26 @@ function shareLink() {
         <AstMdRemark />
       </div>
       <div class="flex items-center gap-1">
-        <span v-if="tc">
-          <AnimateNumber :value="tc" />
-          ms
-        </span>
+        <UTooltip v-if="tc" text="Time consuming">
+          <span class="text-ui-text-muted text-xs">
+            <AnimateNumber :value="tc" />
+            ms
+          </span>
+        </UTooltip>
         <ThemePicker />
-        <UButton class="cursor-pointer" :icon="copied ? 'i-lucide:check' : 'i-lucide:share-2'" variant="ghost" @click="shareLink" />
-        <UButton
-          class="cursor-pointer" icon="i-mdi:github" variant="ghost" @click="navigateTo('https://github.com/litingyes/TransVisor.git', {
-            open: {
-              target: '_blank',
-            },
-          })"
-        />
+        <UTooltip text="Copy share link">
+          <UButton class="cursor-pointer" :icon="copied ? 'i-lucide:check' : 'i-lucide:share-2'" variant="ghost" @click="shareLink" />
+        </UTooltip>
+        <UTooltip text="Star in GitHub">
+          <UButton
+            size="lg"
+            class="cursor-pointer" icon="i-mdi:github" variant="ghost" @click="navigateTo('https://github.com/litingyes/TransVisor.git', {
+              open: {
+                target: '_blank',
+              },
+            })"
+          />
+        </UTooltip>
       </div>
     </header>
     <main class="h-[calc(100%-3rem)] grid grid-cols-2">

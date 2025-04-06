@@ -89,15 +89,17 @@ async function toggleAppearance({ clientX: x, clientY: y }: MouseEvent, value: s
 <template>
   <UPopover :ui="{ content: 'w-72 px-6 py-4 flex flex-col gap-4' }">
     <template #default="{ open }">
-      <UButton
-        class="cursor-pointer"
-        icon="i-lucide-swatch-book"
-        color="neutral"
-        :variant="open ? 'soft' : 'ghost'"
-        square
-        aria-label="Color picker"
-        :ui="{ leadingIcon: 'text-(--ui-primary)' }"
-      />
+      <UTooltip text="Theme picker">
+        <UButton
+          class="cursor-pointer"
+          icon="i-lucide-swatch-book"
+          color="neutral"
+          :variant="open ? 'soft' : 'ghost'"
+          square
+          aria-label="Color picker"
+          :ui="{ leadingIcon: 'text-(--ui-primary)' }"
+        />
+      </UTooltip>
     </template>
     <template #content>
       <fieldset>

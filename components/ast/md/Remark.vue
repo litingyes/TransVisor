@@ -29,7 +29,9 @@ watch(config, (parseOption) => {
       Remark
     </ULink>
     <UPopover arrow>
-      <UButton class="cursor-pointer" icon="i-ant-design:setting-outlined" variant="ghost" />
+      <UTooltip text="Parse settings">
+        <UButton class="cursor-pointer" icon="i-ant-design:setting-outlined" variant="ghost" />
+      </UTooltip>
       <template #content>
         <div class="p-2 flex flex-col gap-1">
           <UBadge variant="soft">
