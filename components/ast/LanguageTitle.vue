@@ -1,16 +1,17 @@
 <script lang="ts" setup>
-defineProps<{
-  language: string
-}>()
+const { language } = useUrlInfo()
+const languageMetadata = computed(() => AST_LANGUAGE_METADATA[language.value])
 </script>
 
 <template>
   <div class="flex items-center gap-1">
     <UIcon
-      v-if="AST_LANGUAGE_METADATA[language]"
-      :name="AST_LANGUAGE_METADATA[language]!.icon"
+      v-if="languageMetadata"
+      :name="languageMetadata!.icon"
       :size="12"
     />
-    <span class="text-base font-semibold">{{ language }}</span>
+    <ULink :href="languageMetadata?.link" target="_blank">
+      <span class="text-base font-semibold text-ui-text">{{ language }}</span>
+    </ULink>
   </div>
 </template>

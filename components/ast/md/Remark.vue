@@ -25,7 +25,7 @@ watch(config, (parseOption) => {
 <template>
   <div class="flex items-center gap-1">
     <UIcon :name="metadata.icon" />
-    <ULink :href="metadata.link" target="_blank">
+    <ULink :href="metadata.link" target="_blank" class="text-ui-text">
       Remark
     </ULink>
     <UPopover arrow>

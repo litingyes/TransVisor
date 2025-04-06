@@ -6,6 +6,7 @@ useHeadSafe({
 })
 
 const { language, hashData, updateHash } = useUrlInfo()
+const languageMetadata = computed(() => AST_LANGUAGE_METADATA[language.value])
 
 const { parse } = useAst()
 
@@ -14,7 +15,7 @@ const ast = ref()
 watch(hashData, (data) => {
   if (!data.code) {
     updateHash({
-      code: AST_LANGUAGE_METADATA[language.value]?.template,
+      code: languageMetadata.value?.template,
     })
     return
   }
