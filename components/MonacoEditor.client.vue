@@ -64,6 +64,7 @@ watch(() => container.value, (container) => {
     theme: catppuccinLatte.name,
     language: props.language,
     value: model.value,
+    fontSize: 16,
   })
   editor.value.onDidChangeModelContent(() => {
     const value = editor.value!.getValue()
