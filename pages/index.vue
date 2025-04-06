@@ -16,7 +16,7 @@ useHeadSafe({
         </p>
         <div class="mt-6">
           <div
-            class="relative p-4 rounded-lg border border-neutral-200 cursor-pointer transition-all hover:bg-neutral-50 dark:hover:bg-old-neutral-950"
+            class="relative p-4 rounded-lg border border-ui-border cursor-pointer transition-all hover:bg-ui-bg-muted"
             @click="navigateTo('/ast/markdown')"
           >
             <InspiraGlowingEffect

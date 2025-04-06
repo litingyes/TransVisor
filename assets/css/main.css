@@ -1,2 +1,35 @@
 @import 'tailwindcss' theme(static);
 @import '@nuxt/ui';
+
+@theme {
+  /* Least prominent text */
+  --color-ui-text-dimmed: var(--ui-text-dimmed);
+  /* Slightly muted text */
+  --color-ui-text-muted: var(--ui-text-muted);
+  /* Moderately prominent text */
+  --color-ui-text-toned: var(--ui-text-toned);
+  /* Default text color */
+  --color-ui-text: var(--ui-text);
+  /* Most prominent text */
+  --color-ui-text-highlighted: var(--ui-text-highlighted);
+
+  /* Main background color */
+  --color-ui-bg: var(--ui-bg);
+  /* Subtle background */
+  --color-ui-bg-muted: var(--ui-bg-muted);
+  /* Slightly elevated background */
+  --color-ui-bg-elevated: var(--ui-bg-elevated);
+  /* More prominent background */
+  --color-ui-bg-accented: var(--ui-bg-accented);
+  /* Inverted background color */
+  --color-ui-bg-inverted: var(--ui-bg-inverted);
+
+  /* Default border color */
+  --color-ui-border: var(--ui-border);
+  /* Subtle border */
+  --color-ui-border-muted: var(--ui-border-muted);
+  /* More prominent border */
+  --color-ui-border-accented: var(--ui-border-accented);
+  /* Inverted border color */
+  --color-ui-border-inverted: var(--ui-border-inverted);
+}
