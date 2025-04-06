@@ -6,7 +6,7 @@ useHeadSafe({
 
 <template>
   <div class="flex items-center justify-center h-full w-full overflow-auto">
-    <div class="-translate-y-20">
+    <div class="-translate-y-1/6">
       <InspiraBlurReveal :duration="0.6" :delay="0.6" :y-offset="60">
         <div class="font-bold text-6xl bg-gradient-to-r from-primary-700 to-primary-300 bg-clip-text  text-transparent">
           TransVisor
