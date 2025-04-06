@@ -43,9 +43,6 @@ watch(() => props.language, (language) => {
   editorModel.value = monaco.editor.createModel(model.value ?? '', language)
   editor.value?.setModel(editorModel.value)
 })
-watch(model, (code) => {
-  editor.value?.setValue(code ?? '')
-})
 
 const colorMode = useColorMode()
 watch(() => colorMode.value, (color) => {

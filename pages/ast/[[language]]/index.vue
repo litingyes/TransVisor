@@ -12,11 +12,10 @@ const { parse } = useAst()
 
 const tc = ref(0)
 const ast = ref()
+const editorRef = useTemplateRef('editorRef')
 watch(hashData, (data) => {
   if (!data.code) {
-    updateHash({
-      code: languageMetadata.value?.template,
-    })
+    editorRef.value?.editor?.setValue(languageMetadata.value?.template ?? '')
     return
   }
 
@@ -99,7 +98,7 @@ function shareLink() {
     </header>
     <main class="h-[calc(100%-3rem)] grid grid-cols-2">
       <div class="h-full">
-        <MonacoEditor :model-value="hashData.code" @change="onCodeChange" />
+        <MonacoEditor ref="editorRef" :model-value="hashData.code" @change="onCodeChange" />
       </div>
       <div class="px-4 py-2 overflow-auto h-full">
         <UTabs :items="tabItems" :ui="{ root: 'h-full', content: 'h-[calc(100%-3rem)] overflow-auto' }">
