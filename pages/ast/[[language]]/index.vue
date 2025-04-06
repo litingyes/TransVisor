@@ -13,8 +13,9 @@ const tc = ref(0)
 const ast = ref()
 watch(hashData, (data) => {
   if (!data.code) {
-    tc.value = 0
-    ast.value = undefined
+    updateHash({
+      code: AST_LANGUAGE_METADATA[language.value]?.template,
+    })
     return
   }
 
