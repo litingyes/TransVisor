@@ -10,7 +10,14 @@ interface HashData {
 export function useUrlInfo() {
   const route = useRoute()
 
-  const language = computed(() => (route.params.language ?? '') as string)
+  const language = computed({
+    get() {
+      return (route.params.language ?? '') as string
+    },
+    set(value) {
+      navigateTo(`/ast/${value}`)
+    },
+  })
 
   const hashData = computed<Partial<HashData>>(() => {
     const data = destr<HashData | string>(atou(route.hash.slice(1)))

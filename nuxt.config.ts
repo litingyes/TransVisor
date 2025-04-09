@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     'motion-v/nuxt',
     '@vite-pwa/nuxt',
     '@nuxtjs/seo',
+    '@nuxt/image',
   ],
 
   eslint: {
@@ -28,6 +29,10 @@ export default defineNuxtConfig({
     serverBundle: {
       collections: ['carbon', 'ic', 'ant-design', 'mdi', 'logos', 'vscode-icons', 'lucide'],
     },
+    customCollections: [{
+      prefix: 'custom',
+      dir: './assets/icons',
+    }],
   },
   site: {
     name: 'TransVisor',

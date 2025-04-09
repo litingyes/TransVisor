@@ -3,12 +3,13 @@ import { shikiToMonaco } from '@shikijs/monaco'
 import * as monaco from 'monaco-editor-core'
 import { createHighlighterCoreSync } from 'shiki/core'
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
+import javascript from 'shiki/langs/javascript.mjs'
 import markdown from 'shiki/langs/markdown.mjs'
 import catppuccinLatte from 'shiki/themes/catppuccin-latte.mjs'
 import catppuccinMocha from 'shiki/themes/catppuccin-mocha.mjs'
 
 const props = withDefaults(defineProps<{
-  language?: 'plaintext' | 'markdown'
+  language?: string
 }>(), {
   language: 'plaintext',
 })
@@ -25,11 +26,13 @@ const highlighter = createHighlighterCoreSync({
   ],
   langs: [
     markdown,
+    javascript,
   ],
   engine: createJavaScriptRegexEngine(),
 })
 
 monaco.languages.register({ id: 'markdown' })
+monaco.languages.register({ id: 'javascript' })
 
 shikiToMonaco(highlighter, monaco)
 

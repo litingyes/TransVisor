@@ -1,4 +1,6 @@
 import type { Jsonifiable } from 'type-fest'
+import JavascriptAcorn from '~/components/ast/javascript/Acorn.vue'
+import MdRemark from '~/components/ast/md/Remark.vue'
 
 export function useAst() {
   const { language, hashData } = useUrlInfo()
@@ -7,14 +9,20 @@ export function useAst() {
     let ast: Jsonifiable = null
     let timeConsuming = 0
 
+    const start = performance.now()
+
     switch (language.value) {
       case 'markdown': {
-        const start = performance.now()
-        ast = await parseMarkdownToAst(code, hashData.value.parseBy, hashData.value) as unknown as Jsonifiable
-        timeConsuming = Math.ceil((performance.now() - start) * 10) / 10
+        ast = await parseMarkdownToAst(code, hashData.value.parseBy, hashData.value.parseOption) as unknown as Jsonifiable
+        break
+      }
+      case 'javascript': {
+        ast = await parseJavascriptToAst(code, hashData.value.parseBy, hashData.value.parseOption) as unknown as Jsonifiable
         break
       }
     }
+
+    timeConsuming = Math.ceil((performance.now() - start) * 10) / 10
 
     return {
       ast,
@@ -22,7 +30,22 @@ export function useAst() {
     }
   }
 
+  const Parser = computed(() => {
+    switch (hashData.value.parseBy) {
+      case 'acorn': {
+        return JavascriptAcorn
+      }
+      case 'remark':{
+        return MdRemark
+      }
+      default: {
+        return 'div'
+      }
+    }
+  })
+
   return {
     parse,
+    Parser,
   }
 }

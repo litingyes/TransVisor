@@ -13,9 +13,24 @@ const { parse } = useAst()
 const tc = ref(0)
 const ast = ref()
 const editorRef = useTemplateRef('editorRef')
-watch(hashData, (data) => {
+watch([hashData, editorRef], ([data]) => {
   if (!data.code) {
-    editorRef.value?.editor?.setValue(languageMetadata.value?.template ?? '')
+    nextTick(() => {
+      editorRef.value?.editor?.setValue(languageMetadata.value?.template ?? '')
+    })
+    return
+  }
+
+  if (!data.parseBy) {
+    const parsers = AST_LANGUAGE_METADATA[language.value]?.parsers
+    if (!parsers) {
+      return
+    }
+
+    updateHash({
+      parseBy: Object.keys(parsers)[0],
+    })
+
     return
   }
 
@@ -71,7 +86,7 @@ function shareLink() {
           </div>
         </div>
         <AstLanguageTitle :language="language" />
-        <AstMdRemark />
+        <AstLanguageParser />
       </div>
       <div class="flex items-center gap-1">
         <UTooltip v-if="tc" text="Time consuming">
@@ -98,7 +113,7 @@ function shareLink() {
     </header>
     <main class="h-[calc(100%-3rem)] grid grid-cols-2">
       <div class="h-full">
-        <MonacoEditor ref="editorRef" :model-value="hashData.code" @change="onCodeChange" />
+        <MonacoEditor ref="editorRef" :model-value="hashData.code" :language="language" @change="onCodeChange" />
       </div>
       <div class="px-4 py-2 overflow-auto h-full">
         <UTabs :items="tabItems" :ui="{ root: 'h-full', content: 'h-[calc(100%-3rem)] overflow-auto' }">
