@@ -29,7 +29,7 @@
     "monaco-editor": "*",
     "monaco-editor-core": "^0.52.2",
     "motion-v": "1.0.0-beta.1",
-    "nuxt": "^3.16.2",
+    "nuxt": "^3.19.0",
     "remark": "^15.0.1",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
